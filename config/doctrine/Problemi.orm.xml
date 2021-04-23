@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Problemi" table="problemi">
+    <indexes>
+      <index name="id_misurazione" columns="id_misurazione"/>
+      <index name="id_utente" columns="id_utente"/>
+    </indexes>
+    <id name="idProblema" type="integer" column="id_problema">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="altaBassa" type="boolean" column="alta_bassa" nullable="false"/>
+    <many-to-one field="idMisurazione" target-entity="Misurazioni" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_misurazione" referenced-column-name="id_misurazione"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idUtente" target-entity="Utenti" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_utente" referenced-column-name="id_utente"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
